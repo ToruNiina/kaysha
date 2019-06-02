@@ -30,7 +30,6 @@ struct differentiation<constant<T>> : public kaysha_type
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
-    using tag_type   = Tag;
 
     constexpr explicit differentiation(const constant&) noexcept = default;
     constexpr ~differentiation() noexcept = default;
