@@ -50,8 +50,8 @@ The main idea is inspired by the "Expression-template" technique. It enables
 the human-readable code to skip needless calculations by emulating syntax-tree
 with templatized proxy classes.
 
-kaysha also constructs a syntax tree by overloading the arithmatic operators
-and `differentiate` function transforms the tree into the derivative of the
+Kaysha also constructs a syntax tree by overloading the arithmatic operators.
+Then `differentiate` function transforms the tree into the derivative of the
 original tree.
 
 A brief example of the idea is demonstrated in the following snippet (the actual
@@ -71,3 +71,11 @@ template<typename L, typename R>
 addition<differentiation<L>, differentiation<R>>
 differentiate(const addition<L, R>&);
 ```
+
+## Licensing terms
+
+This product is licensed under the terms of the [MIT License](LICENSE).
+
+- Copyright (c) 2019 Toru Niina
+
+All rights reserved.
