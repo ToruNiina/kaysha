@@ -36,10 +36,10 @@ struct differentiation<division<Lhs, Rhs>>
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
     using type = division<subtraction<
-            multiply<differentiation<Lhs>, Rhs>,
-            multiply<differentiation<Rhs>, Lhs>
+            multiplication<differentiation<Lhs>, Rhs>,
+            multiplication<differentiation<Rhs>, Lhs>
             >,
-            multiply<Rhs, Rhs>
+            multiplication<Rhs, Rhs>
         >;
 };
 
