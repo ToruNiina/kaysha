@@ -12,7 +12,8 @@ struct constant : public kaysha_type
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
 
-    constexpr constant()  noexcept = default;
+    constexpr constant() noexcept = default;
+    constexpr constant(const value_type x) noexcept: v(x) {}
     constexpr constant(constant const&) noexcept = default;
     constexpr constant(constant &&)     noexcept = default;
     constexpr constant& operator=(constant const&) noexcept = default;
