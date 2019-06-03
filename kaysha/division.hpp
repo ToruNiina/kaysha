@@ -3,6 +3,9 @@
 #include <type_traits>
 #include "tag.hpp"
 #include "differentiation.hpp"
+#include "addition.hpp"
+#include "subtraction.hpp"
+#include "multiplication.hpp"
 
 namespace kaysha
 {
