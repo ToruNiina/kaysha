@@ -18,8 +18,8 @@ struct subtraction: public kaysha_type
     constexpr subtraction(const Lhs& l, const Rhs& r) noexcept: lhs(l), rhs(r) {}
     constexpr subtraction(subtraction const&) noexcept = default;
     constexpr subtraction(subtraction &&)     noexcept = default;
-    constexpr subtraction& operator=(subtraction const&) noexcept = default;
-    constexpr subtraction& operator=(subtraction &&)     noexcept = default;
+    subtraction& operator=(subtraction const&) noexcept = default;
+    subtraction& operator=(subtraction &&)     noexcept = default;
     ~subtraction() noexcept = default;
 
     constexpr value_type operator()(value_type x) noexcept

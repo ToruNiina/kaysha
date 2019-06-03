@@ -16,8 +16,8 @@ struct constant : public kaysha_type
     constexpr constant(const value_type x) noexcept: v(x) {}
     constexpr constant(constant const&) noexcept = default;
     constexpr constant(constant &&)     noexcept = default;
-    constexpr constant& operator=(constant const&) noexcept = default;
-    constexpr constant& operator=(constant &&)     noexcept = default;
+    constant& operator=(constant const&) noexcept = default;
+    constant& operator=(constant &&)     noexcept = default;
     ~constant() noexcept = default;
 
     constexpr value_type operator()(value_type) noexcept {return v;}
@@ -35,8 +35,8 @@ struct zero : public kaysha_type
     constexpr zero()  noexcept = default;
     constexpr zero(zero const&) noexcept = default;
     constexpr zero(zero &&)     noexcept = default;
-    constexpr zero& operator=(zero const&) noexcept = default;
-    constexpr zero& operator=(zero &&)     noexcept = default;
+    zero& operator=(zero const&) noexcept = default;
+    zero& operator=(zero &&)     noexcept = default;
     ~zero() noexcept = default;
 
     constexpr value_type operator()(value_type) noexcept {return 0;}
@@ -51,8 +51,8 @@ struct one : public kaysha_type
     constexpr one()  noexcept = default;
     constexpr one(one const&) noexcept = default;
     constexpr one(one &&)     noexcept = default;
-    constexpr one& operator=(one const&) noexcept = default;
-    constexpr one& operator=(one &&)     noexcept = default;
+    one& operator=(one const&) noexcept = default;
+    one& operator=(one &&)     noexcept = default;
     ~one() noexcept = default;
 
     constexpr value_type operator()(value_type) noexcept {return 1;}

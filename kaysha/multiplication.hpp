@@ -19,8 +19,8 @@ struct multiplication: public kaysha_type
     constexpr multiplication(const Lhs& l, const Rhs& r) noexcept: lhs(l), rhs(r) {}
     constexpr multiplication(multiplication const&) noexcept = default;
     constexpr multiplication(multiplication &&)     noexcept = default;
-    constexpr multiplication& operator=(multiplication const&) noexcept = default;
-    constexpr multiplication& operator=(multiplication &&)     noexcept = default;
+    multiplication& operator=(multiplication const&) noexcept = default;
+    multiplication& operator=(multiplication &&)     noexcept = default;
     ~multiplication() noexcept = default;
 
     constexpr value_type operator()(value_type x) noexcept

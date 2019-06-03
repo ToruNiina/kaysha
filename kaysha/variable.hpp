@@ -16,8 +16,8 @@ struct variable: public kaysha_type
     constexpr variable()  noexcept = default;
     constexpr variable(variable const&) noexcept = default;
     constexpr variable(variable &&)     noexcept = default;
-    constexpr variable& operator=(variable const&) noexcept = default;
-    constexpr variable& operator=(variable &&)     noexcept = default;
+    variable& operator=(variable const&) noexcept = default;
+    variable& operator=(variable &&)     noexcept = default;
     ~variable() noexcept = default;
 
     constexpr value_type operator()(value_type x) noexcept {return x;}
