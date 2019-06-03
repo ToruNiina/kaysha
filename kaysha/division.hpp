@@ -25,7 +25,7 @@ struct division: public kaysha_type
     division& operator=(division &&)     noexcept = default;
     ~division() noexcept = default;
 
-    constexpr value_type operator()(value_type x) noexcept
+    constexpr value_type operator()(value_type x) const noexcept
     {return lhs(x) / rhs(x);}
 
     Lhs lhs;

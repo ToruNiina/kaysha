@@ -20,7 +20,7 @@ struct constant : public kaysha_type
     constant& operator=(constant &&)     noexcept = default;
     ~constant() noexcept = default;
 
-    constexpr value_type operator()(value_type) noexcept {return v;}
+    constexpr value_type operator()(value_type) const noexcept {return v;}
 
     value_type v;
 };
@@ -39,7 +39,7 @@ struct zero : public kaysha_type
     zero& operator=(zero &&)     noexcept = default;
     ~zero() noexcept = default;
 
-    constexpr value_type operator()(value_type) noexcept {return 0;}
+    constexpr value_type operator()(value_type) const noexcept {return 0;}
 };
 // ditto.
 template<typename T>
@@ -55,7 +55,7 @@ struct one : public kaysha_type
     one& operator=(one &&)     noexcept = default;
     ~one() noexcept = default;
 
-    constexpr value_type operator()(value_type) noexcept {return 1;}
+    constexpr value_type operator()(value_type) const noexcept {return 1;}
 };
 
 template<typename T>

@@ -20,7 +20,7 @@ struct variable: public kaysha_type
     variable& operator=(variable &&)     noexcept = default;
     ~variable() noexcept = default;
 
-    constexpr value_type operator()(value_type x) noexcept {return x;}
+    constexpr value_type operator()(value_type x) const noexcept {return x;}
 };
 
 // dx/dx = 1

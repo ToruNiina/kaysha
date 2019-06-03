@@ -22,7 +22,7 @@ struct subtraction: public kaysha_type
     subtraction& operator=(subtraction &&)     noexcept = default;
     ~subtraction() noexcept = default;
 
-    constexpr value_type operator()(value_type x) noexcept
+    constexpr value_type operator()(value_type x) const noexcept
     {return lhs(x) - rhs(x);}
 
     Lhs lhs;

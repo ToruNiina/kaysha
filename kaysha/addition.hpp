@@ -22,7 +22,7 @@ struct addition: public kaysha_type
     addition& operator=(addition &&)     noexcept = default;
     ~addition() noexcept = default;
 
-    constexpr value_type operator()(value_type x) noexcept
+    constexpr value_type operator()(value_type x) const noexcept
     {return lhs(x) + rhs(x);}
 
     Lhs lhs;
