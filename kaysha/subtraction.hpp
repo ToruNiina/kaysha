@@ -40,8 +40,7 @@ struct differentiation<subtraction<Lhs, Rhs>>: public kaysha_type
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
-        return type(differentiation<Lhs>::make(ad.lhs),
-                    differentiation<Rhs>::make(ad.rhs));
+        return type(differentiate(ad.lhs), differentiate(ad.rhs));
     }
 };
 
