@@ -24,20 +24,9 @@ struct variable: public kaysha_type
 
 // dx/dx = 1
 template<typename T>
-struct differentiation<variable<T>>: public kaysha_type
+struct differentiation<variable<T>>
 {
-    static_assert(std::is_floating_point<T>::value, "");
-    using value_type = T;
-
-    constexpr explicit differentiation(const variable&) noexcept = default;
-    constexpr ~differentiation() noexcept = default;
-    constexpr differentiation(differentiation const&) noexcept = default;
-    constexpr differentiation(differentiation &&)     noexcept = default;
-    constexpr differentiation& operator=(differentiation const&) noexcept = default;
-    constexpr differentiation& operator=(differentiation &&)     noexcept = default;
-
-    constexpr value_type operator()(value_type x) noexcept
-    {return static_cast<value_type>(1);}
+    using type = one<T>;
 };
 
 } // kaysha

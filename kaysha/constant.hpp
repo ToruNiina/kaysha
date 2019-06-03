@@ -24,22 +24,43 @@ struct constant : public kaysha_type
     value_type v;
 };
 
-// c/dx = 0
+// one of the special values.
 template<typename T>
-struct differentiation<constant<T>> : public kaysha_type
+struct zero : public kaysha_type
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
 
-    constexpr explicit differentiation(const constant&) noexcept = default;
-    constexpr ~differentiation() noexcept = default;
-    constexpr differentiation(differentiation const&) noexcept = default;
-    constexpr differentiation(differentiation &&)     noexcept = default;
-    constexpr differentiation& operator=(differentiation const&) noexcept = default;
-    constexpr differentiation& operator=(differentiation &&)     noexcept = default;
+    constexpr constant()  noexcept = default;
+    constexpr ~constant() noexcept = default;
+    constexpr constant(constant const&) noexcept = default;
+    constexpr constant(constant &&)     noexcept = default;
+    constexpr constant& operator=(constant const&) noexcept = default;
+    constexpr constant& operator=(constant &&)     noexcept = default;
 
-    constexpr value_type operator()(value_type x) noexcept
-    {return static_cast<value_type>(0);}
+    constexpr value_type operator()(value_type) noexcept {return 0;}
+};
+// ditto.
+template<typename T>
+struct one : public kaysha_type
+{
+    static_assert(std::is_floating_point<T>::value, "");
+    using value_type = T;
+
+    constexpr constant()  noexcept = default;
+    constexpr ~constant() noexcept = default;
+    constexpr constant(constant const&) noexcept = default;
+    constexpr constant(constant &&)     noexcept = default;
+    constexpr constant& operator=(constant const&) noexcept = default;
+    constexpr constant& operator=(constant &&)     noexcept = default;
+
+    constexpr value_type operator()(value_type) noexcept {return 1;}
+};
+
+template<typename T>
+struct differentiation<constant<T>>
+{
+    using type = zero<T>;
 };
 
 } // kaysha
