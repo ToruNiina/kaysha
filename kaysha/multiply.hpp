@@ -3,6 +3,7 @@
 #include <type_traits>
 #include "tag.hpp"
 #include "differentiation.hpp"
+#include "addition.hpp"
 
 namespace kaysha
 {
@@ -30,33 +31,15 @@ struct multiply: public kaysha_type
 };
 
 template<typename Lhs, typename Rhs>
-struct differentiation<multiply<Lhs, Rhs>>: public kaysha_type
+struct differentiation<multiply<Lhs, Rhs>>
 {
-    using lhs_value_type = typename Lhs::value_type;
-    using rhs_value_type = typename Rhs::value_type;
-    using value_type =
-        typename std::common_type<lhs_value_type, rhs_value_type>::type;
+    static_assert(std::is_same<
+        typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
-    using dlhs_type = differentiation<Lhs>;
-    using drhs_type = differentiation<Rhs>;
-
-    constexpr explicit differentiation(const multiply<Lhs, Rhs>& m) noexcept
-        : multiply_(m), dlhs_(m.lhs), drhs_(m.rhs)
-    {}
-    constexpr ~differentiation() noexcept = default;
-    constexpr differentiation(differentiation const&) noexcept = default;
-    constexpr differentiation(differentiation &&)     noexcept = default;
-    constexpr differentiation& operator=(differentiation const&) noexcept = default;
-    constexpr differentiation& operator=(differentiation &&)     noexcept = default;
-
-    constexpr value_type operator()(value_type x) noexcept
-    {
-        return dlhs(x) * multiply_.rhs(x) + multiply_.lhs(x) * drhs(x);
-    }
-
-    dlhs_type dlhs;
-    drhs_type drhs;
-    multiply<Lhs, Rhs> multiply_;
+    using type = addition<
+            multiply<differentiation<Lhs>, Rhs>,
+            multiply<differentiation<Rhs>, Lhs>
+        >;
 };
 
 template<typename Lhs, typename Rhs>

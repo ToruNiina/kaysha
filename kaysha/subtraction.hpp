@@ -32,30 +32,10 @@ struct subtraction: public kaysha_type
 template<typename Lhs, typename Rhs>
 struct differentiation<subtraction<Lhs, Rhs>>: public kaysha_type
 {
-    using lhs_value_type = typename Lhs::value_type;
-    using rhs_value_type = typename Rhs::value_type;
-    using value_type =
-        typename std::common_type<lhs_value_type, rhs_value_type>::type;
+    static_assert(std::is_same<
+        typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
-    using dlhs_type = differentiation<Lhs>;
-    using drhs_type = differentiation<Rhs>;
-
-    constexpr explicit differentiation(const subtraction<Lhs, Rhs>& a) noexcept
-        : dlhs_(a.lhs), drhs_(a.rhs)
-    {}
-    constexpr ~differentiation() noexcept = default;
-    constexpr differentiation(differentiation const&) noexcept = default;
-    constexpr differentiation(differentiation &&)     noexcept = default;
-    constexpr differentiation& operator=(differentiation const&) noexcept = default;
-    constexpr differentiation& operator=(differentiation &&)     noexcept = default;
-
-    constexpr value_type operator()(value_type x) noexcept
-    {
-        return dlhs(x) - drhs(x);
-    }
-
-    dlhs_type dlhs;
-    drhs_type drhs;
+    using type = subtraction<differentiation<Lhs>, differentiation<Rhs>>;
 };
 
 template<typename Lhs, typename Rhs>
