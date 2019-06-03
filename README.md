@@ -55,7 +55,7 @@ and `differentiate` function transforms the tree into the derivative of the
 original tree.
 
 A brief example of the idea is demonstrated in the following snippet (the actual
-code looks messier).
+code looks more complicated than this).
 
 ```cpp
 template<typename L, typename R>
