@@ -36,7 +36,7 @@ struct differentiation<subtraction<Lhs, Rhs>>: public kaysha_type
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
     using antiderivative = subtraction<Lhs, Rhs>;
-    using type = subtraction<differentiation<Lhs>, differentiation<Rhs>>;
+    using type = subtraction<differentiation_t<Lhs>, differentiation_t<Rhs>>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {

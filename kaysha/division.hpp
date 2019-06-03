@@ -40,19 +40,19 @@ struct differentiation<division<Lhs, Rhs>>
 
     using antiderivative = division<Lhs, Rhs>;
     using type = division<subtraction<
-            multiplication<differentiation<Lhs>, Rhs>,
-            multiplication<differentiation<Rhs>, Lhs>
+            multiplication<differentiation_t<Lhs>, Rhs>,
+            multiplication<differentiation_t<Rhs>, Lhs>
             >,
             multiplication<Rhs, Rhs>
         >;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
-        return type(subtraction<multiplication<differentiation<Lhs>, Rhs>,
-                                multiplication<differentiation<Rhs>, Lhs>>(
-                multiplication<differentiation<Lhs>, Rhs>(
+        return type(subtraction<multiplication<differentiation_t<Lhs>, Rhs>,
+                                multiplication<differentiation_t<Rhs>, Lhs>>(
+                multiplication<differentiation_t<Lhs>, Rhs>(
                     differentiation<Lhs>::make(ad.lhs), ad.rhs),
-                multiplication<differentiation<Rhs>, Lhs>(
+                multiplication<differentiation_t<Rhs>, Lhs>(
                     differentiation<Rhs>::make(ad.rhs), ad.lhs)),
                 multiplication<Rhs, Rhs>(ad.rhs, ad.rhs));
     }

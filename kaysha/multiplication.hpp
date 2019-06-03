@@ -38,16 +38,16 @@ struct differentiation<multiplication<Lhs, Rhs>>
 
     using antiderivative = multiplication<Lhs, Rhs>;
     using type = addition<
-            multiplication<differentiation<Lhs>, Rhs>,
-            multiplication<differentiation<Rhs>, Lhs>
+            multiplication<differentiation_t<Lhs>, Rhs>,
+            multiplication<differentiation_t<Rhs>, Lhs>
         >;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
         return type(
-                multiplication<differentiation<Lhs>, Rhs>(
+                multiplication<differentiation_t<Lhs>, Rhs>(
                     differentiation<Lhs>::make(ad.lhs), ad.rhs),
-                multiplication<differentiation<Rhs>, Lhs>(
+                multiplication<differentiation_t<Rhs>, Lhs>(
                     differentiation<Rhs>::make(ad.rhs), ad.lhs)
             );
     }
