@@ -68,14 +68,14 @@ struct differentiation<constant<T>>
 template<typename T>
 struct differentiation<zero<T>>
 {
-    using antiderivative = constant<T>;
+    using antiderivative = zero<T>;
     using type           = zero<T>;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 template<typename T>
 struct differentiation<one<T>>
 {
-    using antiderivative = constant<T>;
+    using antiderivative = one<T>;
     using type           = zero<T>;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
