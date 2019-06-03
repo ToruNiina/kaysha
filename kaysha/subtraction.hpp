@@ -35,7 +35,14 @@ struct differentiation<subtraction<Lhs, Rhs>>: public kaysha_type
     static_assert(std::is_same<
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
+    using antiderivative = subtraction<Lhs, Rhs>;
     using type = subtraction<differentiation<Lhs>, differentiation<Rhs>>;
+
+    static constexpr type make(const antiderivative& ad) noexcept
+    {
+        return type(differentiation<Lhs>::make(ad.lhs),
+                    differentiation<Rhs>::make(ad.rhs));
+    }
 };
 
 template<typename Lhs, typename Rhs>

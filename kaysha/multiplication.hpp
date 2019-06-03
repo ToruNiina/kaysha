@@ -36,10 +36,21 @@ struct differentiation<multiplication<Lhs, Rhs>>
     static_assert(std::is_same<
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
+    using antiderivative = multiplication<Lhs, Rhs>;
     using type = addition<
             multiplication<differentiation<Lhs>, Rhs>,
             multiplication<differentiation<Rhs>, Lhs>
         >;
+
+    static constexpr type make(const antiderivative& ad) noexcept
+    {
+        return type(
+                multiplication<differentiation<Lhs>, Rhs>(
+                    differentiation<Lhs>::make(ad.lhs), ad.rhs),
+                multiplication<differentiation<Rhs>, Lhs>(
+                    differentiation<Rhs>::make(ad.rhs), ad.lhs)
+            );
+    }
 };
 
 template<typename Lhs, typename Rhs>

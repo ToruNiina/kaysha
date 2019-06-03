@@ -60,7 +60,9 @@ struct one : public kaysha_type
 template<typename T>
 struct differentiation<constant<T>>
 {
-    using type = zero<T>;
+    using antiderivative = constant<T>;
+    using type           = zero<T>;
+    static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 
 } // kaysha

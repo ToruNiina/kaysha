@@ -44,6 +44,17 @@ struct differentiation<division<Lhs, Rhs>>
             >,
             multiplication<Rhs, Rhs>
         >;
+
+    static constexpr type make(const antiderivative& ad) noexcept
+    {
+        return type(subtraction<multiplication<differentiation<Lhs>, Rhs>,
+                                multiplication<differentiation<Rhs>, Lhs>>(
+                multiplication<differentiation<Lhs>, Rhs>(
+                    differentiation<Lhs>::make(ad.lhs), ad.rhs),
+                multiplication<differentiation<Rhs>, Lhs>(
+                    differentiation<Rhs>::make(ad.rhs), ad.lhs)),
+                multiplication<Rhs, Rhs>(ad.rhs, ad.rhs));
+    }
 };
 
 template<typename Lhs, typename Rhs>

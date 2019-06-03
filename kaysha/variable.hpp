@@ -27,7 +27,9 @@ struct variable: public kaysha_type
 template<typename T>
 struct differentiation<variable<T>>
 {
-    using type = one<T>;
+    using antiderivative = variable<T>;
+    using type           = one<T>;
+    static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 
 } // kaysha
