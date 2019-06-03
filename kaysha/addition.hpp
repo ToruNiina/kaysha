@@ -16,11 +16,11 @@ struct addition: public kaysha_type
         typename std::common_type<lhs_value_type, rhs_value_type>::type;
 
     constexpr addition(const Lhs& l, const Rhs& r) noexcept: lhs(l), rhs(r) {}
-    constexpr ~addition() noexcept = default;
     constexpr addition(addition const&) noexcept = default;
     constexpr addition(addition &&)     noexcept = default;
     constexpr addition& operator=(addition const&) noexcept = default;
     constexpr addition& operator=(addition &&)     noexcept = default;
+    ~addition() noexcept = default;
 
     constexpr value_type operator()(value_type x) noexcept
     {return lhs(x) + rhs(x);}

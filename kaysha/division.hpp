@@ -19,11 +19,11 @@ struct division: public kaysha_type
         typename std::common_type<lhs_value_type, rhs_value_type>::type;
 
     constexpr division(const Lhs& l, const Rhs& r) noexcept: lhs(l), rhs(r) {}
-    constexpr ~division() noexcept = default;
     constexpr division(division const&) noexcept = default;
     constexpr division(division &&)     noexcept = default;
     constexpr division& operator=(division const&) noexcept = default;
     constexpr division& operator=(division &&)     noexcept = default;
+    ~division() noexcept = default;
 
     constexpr value_type operator()(value_type x) noexcept
     {return lhs(x) / rhs(x);}
@@ -38,6 +38,7 @@ struct differentiation<division<Lhs, Rhs>>
     static_assert(std::is_same<
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
+    using antiderivative = division<Lhs, Rhs>;
     using type = division<subtraction<
             multiplication<differentiation<Lhs>, Rhs>,
             multiplication<differentiation<Rhs>, Lhs>
