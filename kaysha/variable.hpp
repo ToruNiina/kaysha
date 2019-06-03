@@ -2,6 +2,7 @@
 #define KAYSHA_VARIABLE_HPP
 #include <type_traits>
 #include "differentiation.hpp"
+#include "constant.hpp"
 
 namespace kaysha
 {
