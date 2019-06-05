@@ -7,7 +7,7 @@ namespace kaysha
 {
 
 template<typename T>
-struct constant : public kaysha_type
+struct constant : public kaysha_type<T>
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
@@ -22,12 +22,14 @@ struct constant : public kaysha_type
 
     constexpr value_type operator()(value_type) const noexcept {return v;}
 
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
+
     value_type v;
 };
 
 // one of the special values.
 template<typename T>
-struct zero : public kaysha_type
+struct zero : public kaysha_type<T>
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
@@ -40,10 +42,12 @@ struct zero : public kaysha_type
     ~zero() noexcept = default;
 
     constexpr value_type operator()(value_type) const noexcept {return 0;}
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
 };
 // ditto.
 template<typename T>
-struct one : public kaysha_type
+struct one : public kaysha_type<T>
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
@@ -56,6 +60,8 @@ struct one : public kaysha_type
     ~one() noexcept = default;
 
     constexpr value_type operator()(value_type) const noexcept {return 1;}
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
 };
 
 template<typename T>

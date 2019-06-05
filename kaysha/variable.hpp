@@ -8,7 +8,7 @@ namespace kaysha
 {
 
 template<typename T>
-struct variable: public kaysha_type
+struct variable: public kaysha_type<T>
 {
     static_assert(std::is_floating_point<T>::value, "");
     using value_type = T;
@@ -21,6 +21,8 @@ struct variable: public kaysha_type
     ~variable() noexcept = default;
 
     constexpr value_type operator()(value_type x) const noexcept {return x;}
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
 };
 
 // dx/dx = 1

@@ -11,7 +11,7 @@ namespace kaysha
 {
 
 template<typename Lhs, typename Rhs>
-struct division: public kaysha_type
+struct division: public kaysha_type<common_value_type_t<Lhs, Rhs>>
 {
     using lhs_value_type = typename Lhs::value_type;
     using rhs_value_type = typename Rhs::value_type;
@@ -27,6 +27,8 @@ struct division: public kaysha_type
 
     constexpr value_type operator()(value_type x) const noexcept
     {return lhs(x) / rhs(x);}
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
 
     Lhs lhs;
     Rhs rhs;
