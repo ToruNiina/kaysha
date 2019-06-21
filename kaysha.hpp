@@ -11,4 +11,6 @@
 #include "kaysha/multiplication.hpp"
 #include "kaysha/division.hpp"
 
+#include "kaysha/power.hpp"
+
 #endif// KAYSHA_KAYSHA_HPP
