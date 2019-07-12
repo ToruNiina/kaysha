@@ -72,6 +72,10 @@ addition<differentiation<L>, differentiation<R>>
 differentiate(const addition<L, R>&);
 ```
 
+## Why?
+
+Just for fun.
+
 ## Licensing terms
 
 This product is licensed under the terms of the [MIT License](LICENSE).
