@@ -10,6 +10,7 @@
 #include "kaysha/subtraction.hpp"
 #include "kaysha/multiplication.hpp"
 #include "kaysha/division.hpp"
+#include "kaysha/negation.hpp"
 
 #include "kaysha/power.hpp"
 
