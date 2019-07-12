@@ -6,6 +6,9 @@
 #include "tag.hpp"
 #include "differentiation.hpp"
 #include "negation.hpp"
+#include "addition.hpp"
+#include "constant.hpp"
+#include "power.hpp"
 
 namespace kaysha
 {
@@ -94,6 +97,50 @@ cos(const Term& l) noexcept
 {
     return sin_of<Term>(l);
 }
+
+
+template<typename Term>
+struct tan_of: public kaysha_type<typename Term::value_type>
+{
+    using value_type = typename Term::value_type;
+
+    constexpr tan_of(const Term& t) noexcept: term(t) {}
+    constexpr tan_of(tan_of const&) noexcept = default;
+    constexpr tan_of(tan_of &&)     noexcept = default;
+    tan_of& operator=(tan_of const&) noexcept = default;
+    tan_of& operator=(tan_of &&)     noexcept = default;
+    ~tan_of() noexcept = default;
+
+    value_type operator()(value_type x) const noexcept
+    {
+        return std::tan(term(x));
+    }
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
+
+    Term term;
+};
+
+template<typename Term>
+constexpr typename std::enable_if<is_kaysha_type<Term>::value, tan_of<Term>>::type
+tan(const Term& l) noexcept
+{
+    return tan_of<Term>(l);
+}
+
+template<typename Term>
+struct differentiation<tan_of<Term>>
+{
+    using value_type = typename Term::value_type;
+
+    using antiderivative = tan_of<Term>;
+    using type = addition<one<value_type>, power_of<tan_of<Term>, 2>>;
+
+    static constexpr type make(const antiderivative& ad) noexcept
+    {
+        return one<value_type>{} + power<2>(ad);
+    }
+};
 
 } // kaysha
 #endif// KAYSHA_MULTIPLY_HPP
