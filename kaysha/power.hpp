@@ -27,10 +27,10 @@ struct power_impl<Real, 0>
         return Real(1);
     }
 };
-}
+} // detail
 
 template<typename Lhs, std::int64_t N>
-struct power_of: public kaysha_type
+struct power_of: public kaysha_type<typename Lhs::value_type>
 {
     using value_type = typename Lhs::value_type;
 
