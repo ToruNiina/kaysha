@@ -13,5 +13,6 @@
 #include "kaysha/negation.hpp"
 
 #include "kaysha/power.hpp"
+#include "kaysha/trigonometric.hpp"
 
 #endif// KAYSHA_KAYSHA_HPP
