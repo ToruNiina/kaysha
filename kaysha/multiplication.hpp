@@ -43,6 +43,7 @@ struct differentiation<multiplication<Lhs, Rhs>>
             multiplication<differentiation_t<Lhs>, Rhs>,
             multiplication<differentiation_t<Rhs>, Lhs>
         >;
+    using value_type = typename type::value_type;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {

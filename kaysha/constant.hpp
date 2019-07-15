@@ -69,6 +69,7 @@ struct differentiation<constant<T>>
 {
     using antiderivative = constant<T>;
     using type           = zero<T>;
+    using value_type     = typename type::value_type;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 template<typename T>
@@ -76,6 +77,7 @@ struct differentiation<zero<T>>
 {
     using antiderivative = zero<T>;
     using type           = zero<T>;
+    using value_type     = typename type::value_type;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 template<typename T>
@@ -83,6 +85,7 @@ struct differentiation<one<T>>
 {
     using antiderivative = one<T>;
     using type           = zero<T>;
+    using value_type     = typename type::value_type;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 

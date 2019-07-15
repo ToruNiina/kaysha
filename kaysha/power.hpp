@@ -52,10 +52,9 @@ struct power_of: public kaysha_type<typename Term::value_type>
 template<typename Term, std::int64_t N>
 struct differentiation<power_of<Term, N>>
 {
-    using value_type = typename Term::value_type;
-
+    using value_type     = typename Term::value_type;
     using antiderivative = power_of<Term, N>;
-    using type = multiplication<constant<value_type>, power_of<Term, N-1>>;
+    using type           = multiplication<constant<value_type>, power_of<Term, N-1>>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
@@ -67,10 +66,9 @@ struct differentiation<power_of<Term, N>>
 template<typename Term>
 struct differentiation<power_of<Term, 0>>
 {
-    using value_type = typename Term::value_type;
-
+    using value_type     = typename Term::value_type;
     using antiderivative = power_of<Term, 0>;
-    using type = zero<value_type>;
+    using type           = zero<value_type>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {

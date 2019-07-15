@@ -60,10 +60,9 @@ struct cos_of: public kaysha_type<typename Term::value_type>
 template<typename Term>
 struct differentiation<sin_of<Term>>
 {
-    using value_type = typename Term::value_type;
-
+    using value_type     = typename Term::value_type;
     using antiderivative = sin_of<Term>;
-    using type = cos_of<Term>;
+    using type           = cos_of<Term>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
@@ -74,10 +73,9 @@ struct differentiation<sin_of<Term>>
 template<typename Term>
 struct differentiation<cos_of<Term>>
 {
-    using value_type = typename Term::value_type;
-
+    using value_type     = typename Term::value_type;
     using antiderivative = cos_of<Term>;
-    using type = negation<sin_of<Term>>;
+    using type           = negation<sin_of<Term>>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
@@ -131,10 +129,9 @@ tan(const Term& t) noexcept
 template<typename Term>
 struct differentiation<tan_of<Term>>
 {
-    using value_type = typename Term::value_type;
-
+    using value_type     = typename Term::value_type;
     using antiderivative = tan_of<Term>;
-    using type = addition<one<value_type>, power_of<tan_of<Term>, 2>>;
+    using type           = addition<one<value_type>, power_of<tan_of<Term>, 2>>;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {

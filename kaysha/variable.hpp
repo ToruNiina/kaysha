@@ -31,6 +31,7 @@ struct differentiation<variable<T>>
 {
     using antiderivative = variable<T>;
     using type           = one<T>;
+    using value_type     = typename type::value_type;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
 };
 

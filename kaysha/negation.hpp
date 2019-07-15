@@ -31,7 +31,8 @@ template<typename Term>
 struct differentiation<negation<Term>>
 {
     using antiderivative = negation<Term>;
-    using type = negation<differentiation_t<Term>>;
+    using type           = negation<differentiation_t<Term>>;
+    using value_type     = typename type::value_type;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {

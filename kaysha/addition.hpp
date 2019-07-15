@@ -38,7 +38,8 @@ struct differentiation<addition<Lhs, Rhs>>
         typename Lhs::value_type, typename Rhs::value_type>::value, "");
 
     using antiderivative = addition<Lhs, Rhs>;
-    using type = addition<differentiation_t<Lhs>, differentiation_t<Rhs>>;
+    using type           = addition<differentiation_t<Lhs>, differentiation_t<Rhs>>;
+    using value_type     = typename type::value_type;
 
     static constexpr type make(const antiderivative& ad) noexcept
     {
