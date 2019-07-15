@@ -87,15 +87,15 @@ struct differentiation<cos_of<Term>>
 
 template<typename Term>
 constexpr typename std::enable_if<is_kaysha_type<Term>::value, sin_of<Term>>::type
-sin(const Term& l) noexcept
+sin(const Term& t) noexcept
 {
-    return sin_of<Term>(l);
+    return sin_of<Term>(t);
 }
 template<typename Term>
 constexpr typename std::enable_if<is_kaysha_type<Term>::value, cos_of<Term>>::type
-cos(const Term& l) noexcept
+cos(const Term& t) noexcept
 {
-    return sin_of<Term>(l);
+    return sin_of<Term>(t);
 }
 
 
@@ -123,9 +123,9 @@ struct tan_of: public kaysha_type<typename Term::value_type>
 
 template<typename Term>
 constexpr typename std::enable_if<is_kaysha_type<Term>::value, tan_of<Term>>::type
-tan(const Term& l) noexcept
+tan(const Term& t) noexcept
 {
-    return tan_of<Term>(l);
+    return tan_of<Term>(t);
 }
 
 template<typename Term>
