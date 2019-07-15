@@ -16,5 +16,6 @@
 #include "kaysha/trigonometric.hpp"
 #include "kaysha/log.hpp"
 #include "kaysha/exponential.hpp"
+#include "kaysha/sqrt.hpp"
 
 #endif// KAYSHA_KAYSHA_HPP
