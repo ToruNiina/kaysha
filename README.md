@@ -76,6 +76,24 @@ differentiate(const addition<L, R>&);
 
 Just for fun.
 
+## Supported functions
+
+- `operator+`
+- `operator-(unary negation)`
+- `operator-(binary subtraction)`
+- `operator*`
+- `operator/`
+- `kaysha::pow`
+- `kaysha::sqrt`
+- `kaysha::exp`
+- `kaysha::log`
+- `kaysha::sin`
+- `kaysha::cos`
+- `kaysha::tan`
+- `kaysha::zero (constant value)`
+- `kaysha::one (constant value)`
+- `kaysha::two (constant value)`
+
 ## Licensing terms
 
 This product is licensed under the terms of the [MIT License](LICENSE).
