@@ -1,8 +1,8 @@
 # Kaysha
 
-Kaysha is an automatic differentiation library.
+Kaysha is a tiny automatic differentiation library.
 
-The automatic differentiation is performed at a compile time.
+Automatic differentiation will be performed at a compile time.
 
 ## Usage
 
@@ -51,17 +51,27 @@ the human-readable code to skip needless calculations by emulating syntax-tree
 with templatized proxy classes.
 
 Kaysha also constructs a syntax tree by overloading the arithmatic operators.
-Then `differentiate` function transforms the tree into the derivative of the
-original tree.
+Then the function, named `differentiate`, transforms the tree into the
+derivative of the original tree at the type level.
 
 A brief example of the idea is demonstrated in the following snippet (the actual
-code looks more complicated than this).
+code looks a bit more complicated than this).
 
 ```cpp
 template<typename L, typename R>
 struct addition
 {
-    // ...
+    value_type operator()(const value_type x) {return lhs(x) + rhs(x);}
+
+    L lhs;
+    R rhs;
+};
+template<typename L, typename R>
+struct differentiate<addition<L, R>>
+{
+    // d(f(x) + g(x)) / dx = df/dx + dg/dx
+    using type = addition<typename differentiate<L>::type,
+                          typename differentiate<R>::type>;
 };
 
 template<typename L, typename R>
