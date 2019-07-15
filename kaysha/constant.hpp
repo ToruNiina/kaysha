@@ -63,6 +63,24 @@ struct one : public kaysha_type<T>
 
     value_type eval(value_type x) const noexcept override {return (*this)(x);}
 };
+template<typename T>
+struct two : public kaysha_type<T>
+{
+    static_assert(std::is_floating_point<T>::value, "");
+    using value_type = T;
+
+    constexpr two()  noexcept = default;
+    constexpr two(two const&) noexcept = default;
+    constexpr two(two &&)     noexcept = default;
+    two& operator=(two const&) noexcept = default;
+    two& operator=(two &&)     noexcept = default;
+    ~two() noexcept = default;
+
+    constexpr value_type operator()(value_type) const noexcept {return 2;}
+
+    value_type eval(value_type x) const noexcept override {return (*this)(x);}
+};
+
 
 template<typename T>
 struct differentiation<constant<T>>
@@ -84,6 +102,14 @@ template<typename T>
 struct differentiation<one<T>>
 {
     using antiderivative = one<T>;
+    using type           = zero<T>;
+    using value_type     = typename type::value_type;
+    static constexpr type make(const antiderivative&) noexcept {return type{};}
+};
+template<typename T>
+struct differentiation<two<T>>
+{
+    using antiderivative = two<T>;
     using type           = zero<T>;
     using value_type     = typename type::value_type;
     static constexpr type make(const antiderivative&) noexcept {return type{};}
