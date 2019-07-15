@@ -14,5 +14,6 @@
 
 #include "kaysha/power.hpp"
 #include "kaysha/trigonometric.hpp"
+#include "kaysha/log.hpp"
 
 #endif// KAYSHA_KAYSHA_HPP
