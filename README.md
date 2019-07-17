@@ -67,18 +67,18 @@ struct addition
     R rhs;
 };
 template<typename L, typename R>
-struct differentiate<addition<L, R>>
+struct differentiation<addition<L, R>>
 {
     // d(f(x) + g(x)) / dx = df/dx + dg/dx
-    using type = addition<typename differentiate<L>::type,
-                          typename differentiate<R>::type>;
+    using type = addition<typename differentiation<L>::type,
+                          typename differentiation<R>::type>;
 };
 
 template<typename L, typename R>
 addition<L, R> operator+(const L&, const R&);
 
 template<typename L, typename R>
-addition<differentiation<L>, differentiation<R>>
+addition<typename differentiation<L>::type, typename differentiation<R>::type>
 differentiate(const addition<L, R>&);
 ```
 
